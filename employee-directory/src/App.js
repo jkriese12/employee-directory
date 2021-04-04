@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Employee from "./components/Employee";
+import Header from "./components/Header";
 import API from "./utils/API";
 function App() {
   // Setting state for employees
@@ -26,15 +27,18 @@ function App() {
   console.log(employees);
   return (
     <div>
-      {employees.map((emp) => (
-        <Employee
-          name={emp.name}
-          pic={emp.pic}
-          email={emp.email}
-          phone={emp.phone}
-          location={emp.location}
-        />
-      ))}
+      <Header />
+      <div>
+        {employees.map((emp) => (
+          <Employee
+            name={emp.name}
+            pic={emp.pic}
+            email={emp.email}
+            phone={emp.phone}
+            location={emp.location}
+          />
+        ))}
+      </div>
     </div>
   );
 }
