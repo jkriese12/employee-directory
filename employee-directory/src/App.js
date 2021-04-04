@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Employee from "./components/Employee";
 import API from "./utils/API";
 function App() {
   // Setting state for employees
@@ -12,7 +13,7 @@ function App() {
         res.data.results.map((emp) => {
           return {
             name: emp.name.first + " " + emp.name.last,
-            pic: emp.picture.thumbnail,
+            pic: emp.picture.large,
             email: emp.email,
             phone: emp.cell,
             location: emp.location.city + ", " + emp.location.state,
@@ -23,7 +24,19 @@ function App() {
   }, []);
 
   console.log(employees);
-  return <div>hi</div>;
+  return (
+    <div>
+      {employees.map((emp) => (
+        <Employee
+          name={emp.name}
+          pic={emp.pic}
+          email={emp.email}
+          phone={emp.phone}
+          location={emp.location}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default App;
