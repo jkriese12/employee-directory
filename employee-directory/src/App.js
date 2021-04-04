@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Employee from "./components/Employee";
 import Header from "./components/Header";
+import SortButtons from "./components/SortButtons";
+import Wrapper from "./components/Wrapper";
 import API from "./utils/API";
 function App() {
   // Setting state for employees
@@ -10,14 +12,14 @@ function App() {
   useEffect(() => {
     API.search().then((res) => {
       setEmployees(
-        // console.log(res.data.results);
         res.data.results.map((emp) => {
           return {
             name: emp.name.first + " " + emp.name.last,
-            pic: emp.picture.large,
+            pic: emp.picture.medium,
             email: emp.email,
             phone: emp.cell,
             location: emp.location.city + ", " + emp.location.state,
+            nat: emp.nat,
           };
         })
       );
@@ -28,17 +30,20 @@ function App() {
   return (
     <div>
       <Header />
-      <div>
-        {employees.map((emp) => (
-          <Employee
-            name={emp.name}
-            pic={emp.pic}
-            email={emp.email}
-            phone={emp.phone}
-            location={emp.location}
-          />
-        ))}
-      </div>
+      <SortButtons />
+      <Wrapper>
+        <div className="emp">
+          {employees.map((emp) => (
+            <Employee
+              name={emp.name}
+              pic={emp.pic}
+              email={emp.email}
+              phone={emp.phone}
+              location={emp.location}
+            />
+          ))}
+        </div>
+      </Wrapper>
     </div>
   );
 }

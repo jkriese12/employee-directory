@@ -1,0 +1,15 @@
+.country {
+  text-align: center;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.lastName {
+  text-align: center;
+  list-style: none;
+}
+
+.button {
+  text-align: center;
+  padding-top: 10px;
+}
