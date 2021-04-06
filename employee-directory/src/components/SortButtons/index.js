@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./sortbuttons.css";
 
 function SortButtons() {
@@ -20,12 +20,6 @@ function SortButtons() {
           <option> Descending (Z-A) </option>
         </select>
       </li>
-      <div className="button">
-        <button className="btn btn-primary btn-lg" type="button" onClick="">
-          {" "}
-          Search
-        </button>
-      </div>
     </div>
   );
 }
