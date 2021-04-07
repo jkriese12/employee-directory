@@ -11,11 +11,19 @@ function App() {
   // Sets the state for the cycling of employees
   const [sortAz, setSortAz] = useState(true);
   const [sortName, setSortName] = useState("nameLast");
-  // Setting value elements
+  // Variables holding filter data for different countries
+  const filterAu = employees.filter((emp) => emp.nat === "AU");
+  const filterGb = employees.filter((emp) => emp.nat === "GB");
+  const filterUs = employees.filter((emp) => emp.nat === "US");
 
+  // Buttton click evens for sorting data
   const handleSort = () => {
     setSortAz(!sortAz);
+    setEmployees(filterGb);
   };
+
+  // const handleAu = () => setEmployees(filterAu);
+
   // Calling API to initialize on page load to have all the data available
   useEffect(() => {
     API.search().then((res) => {
