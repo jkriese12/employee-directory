@@ -6,23 +6,34 @@ import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import API from "./utils/API";
 function App() {
-  // Setting state for employees
+  // Setting state for all employees and based on country
   const [employees, setEmployees] = useState([]);
-  // Sets the state for the cycling of employees
+  const [employeesAu, setEmployeesAu] = useState([]);
+  const [employeesGb, setEmployeesGb] = useState([]);
+  const [employeesUs, setEmployeesUs] = useState([]);
+  // Sets the state for the cycling of employees by last name
   const [sortAz, setSortAz] = useState(true);
   const [sortName, setSortName] = useState("nameLast");
   // Variables holding filter data for different countries
   const filterAu = employees.filter((emp) => emp.nat === "AU");
   const filterGb = employees.filter((emp) => emp.nat === "GB");
   const filterUs = employees.filter((emp) => emp.nat === "US");
-
-  // Buttton click evens for sorting data
+  // Buttton click event for sorting array data
   const handleSort = () => {
+    const index = document.getElementById("countries").selectedIndex;
+    const dropDownText = document.getElementById("countries").options[index].text;
     setSortAz(!sortAz);
-    setEmployees(filterGb);
+    if (dropDownText === "Australia") {
+      setEmployeesAu(filterAu);
+      console.log(employeesAu);
+    } else if (dropDownText === "Great Britain") {
+      setEmployeesGb(filterGb);
+      console.log(employeesGb);
+    } else if (dropDownText === "USA") {
+      setEmployeesUs(filterUs);
+      console.log(employeesUs);
+    } else console.log(employees);
   };
-
-  // const handleAu = () => setEmployees(filterAu);
 
   // Calling API to initialize on page load to have all the data available
   useEffect(() => {
@@ -43,23 +54,22 @@ function App() {
     });
   }, []);
 
-  console.log(employees);
   return (
     <div>
       <Header />
       <div>
         <li className="country">
           <label>Select Country:</label>
-          <select id="all">
-            <option>All Employees</option>
-            <option>USA</option>
-            <option>Great Britain</option>
-            <option>Australia</option>
+          <select id="countries">
+            <option value="1">All Employees</option>
+            <option value="2">USA</option>
+            <option value="3">Great Britain</option>
+            <option value="4">Australia</option>
           </select>
         </li>
         <li className="lastName">
           <label>Sort By Lastname:</label>
-          <select>
+          <select id="sort">
             <option> Ascending (A-Z) </option>
             <option> Descending (Z-A) </option>
           </select>
