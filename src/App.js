@@ -25,7 +25,11 @@ function App() {
   const handleSort = () => {
     const index = document.getElementById("countries").selectedIndex;
     const dropDownText = document.getElementById("countries").options[index].text;
+    // const sortIndex = document.getElementById("sorting").selectedIndex;
+    // const dropDownTextSort = document.getElementById("sorting").options[index].text;
+    // if (dropDownTextSort === "Ascending (A-Z)") {
 
+    // }
     if (dropDownText === "Australia") {
       empAllId.classList.add("empAll");
       empGbId.classList.add("empAll");
@@ -79,6 +83,13 @@ function App() {
             <option value="2">USA</option>
             <option value="3">Great Britain</option>
             <option value="4">Australia</option>
+          </select>
+        </li>
+        <li className="country">
+          <label>Sort employees:</label>
+          <select id="sorting">
+            <option value="5">Ascending (A-Z)</option>
+            <option value="6">Descending (Z-A)</option>
           </select>
         </li>
       </div>
