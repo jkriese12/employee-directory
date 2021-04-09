@@ -10,6 +10,7 @@ function App() {
   const [employees, setEmployees] = useState([]);
   // Sets the state for the cycling of employees by last name
   const [sortName, setSortName] = useState("nameLast");
+
   // Variables holding filter data for different countries
   const filterAu = employees.filter((emp) => emp.nat === "AU");
   const filterGb = employees.filter((emp) => emp.nat === "GB");
@@ -19,18 +20,12 @@ function App() {
   const empAuId = document.getElementById("au");
   const empGbId = document.getElementById("gb");
   const empUsId = document.getElementById("us");
-  const indexSort = document.getElementById("sort").selectedIndex;
-  const dropDownSort = document.getElementById("sort").options[indexSort].text;
+
   // Buttton click event for sorting array data
   const handleSort = () => {
     const index = document.getElementById("countries").selectedIndex;
     const dropDownText = document.getElementById("countries").options[index].text;
 
-    // if (dropDownSort === "Ascending (A-Z)") {
-    //   setSortAz(!sortAz);
-    // } else if (dropDownSort === "Descending (Z-A)") {
-    //   setSortAz(!sortAz);
-    // }
     if (dropDownText === "Australia") {
       empAllId.classList.add("empAll");
       empGbId.classList.add("empAll");
@@ -86,13 +81,6 @@ function App() {
             <option value="4">Australia</option>
           </select>
         </li>
-        <li className="lastName">
-          <label>Sort By Lastname:</label>
-          <select id="sort">
-            <option> Ascending (A-Z) </option>
-            <option> Descending (Z-A) </option>
-          </select>
-        </li>
       </div>
       <div className="button">
         <button className="btn btn-primary btn-lg" type="button" onClick={handleSort}>
@@ -102,80 +90,48 @@ function App() {
       </div>
       <Wrapper>
         <div id="all" className="empAll">
-          {employees
-            .sort((a, b) => {
-              if (dropDownSort === "Ascending (A-Z)") {
-                return a[sortName].localeCompare(b[sortName]);
-              } else {
-                return b[sortName].localeCompare(a[sortName]);
-              }
-            })
-            .map((emp) => (
-              <Employee
-                name={emp.name}
-                pic={emp.pic}
-                email={emp.email}
-                phone={emp.phone}
-                location={emp.location}
-              />
-            ))}
+          {employees.map((emp) => (
+            <Employee
+              name={emp.name}
+              pic={emp.pic}
+              email={emp.email}
+              phone={emp.phone}
+              location={emp.location}
+            />
+          ))}
         </div>
         <div id="au" className="empAll">
-          {filterAu
-            .sort((a, b) => {
-              if (dropDownSort === "Ascending (A-Z)") {
-                return a[sortName].localeCompare(b[sortName]);
-              } else {
-                return b[sortName].localeCompare(a[sortName]);
-              }
-            })
-            .map((emp) => (
-              <Employee
-                name={emp.name}
-                pic={emp.pic}
-                email={emp.email}
-                phone={emp.phone}
-                location={emp.location}
-              />
-            ))}
+          {filterAu.map((emp) => (
+            <Employee
+              name={emp.name}
+              pic={emp.pic}
+              email={emp.email}
+              phone={emp.phone}
+              location={emp.location}
+            />
+          ))}
         </div>
         <div id="gb" className="empAll">
-          {filterGb
-            .sort((a, b) => {
-              if (dropDownSort === "Ascending (A-Z)") {
-                return a[sortName].localeCompare(b[sortName]);
-              } else {
-                return b[sortName].localeCompare(a[sortName]);
-              }
-            })
-            .map((emp) => (
-              <Employee
-                name={emp.name}
-                pic={emp.pic}
-                email={emp.email}
-                phone={emp.phone}
-                location={emp.location}
-              />
-            ))}
+          {filterGb.map((emp) => (
+            <Employee
+              name={emp.name}
+              pic={emp.pic}
+              email={emp.email}
+              phone={emp.phone}
+              location={emp.location}
+            />
+          ))}
         </div>
         <div id="us" className="empAll">
-          {filterUs
-            .sort((a, b) => {
-              if (dropDownSort === "Ascending (A-Z)") {
-                return a[sortName].localeCompare(b[sortName]);
-              } else {
-                return b[sortName].localeCompare(a[sortName]);
-              }
-            })
-            .map((emp) => (
-              <Employee
-                name={emp.name}
-                pic={emp.pic}
-                email={emp.email}
-                phone={emp.phone}
-                location={emp.location}
-              />
-            ))}
+          {filterUs.map((emp) => (
+            <Employee
+              name={emp.name}
+              pic={emp.pic}
+              email={emp.email}
+              phone={emp.phone}
+              location={emp.location}
+            />
+          ))}
         </div>
       </Wrapper>
     </div>
