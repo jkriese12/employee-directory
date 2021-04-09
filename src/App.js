@@ -33,16 +33,16 @@ function App() {
       empAuId.classList.remove("empAll");
     } else if (dropDownText === "Great Britain") {
       empAllId.classList.add("empAll");
-      empGbId.classList.add("empAll");
+      empAuId.classList.add("empAll");
       empUsId.classList.add("empAll");
       empGbId.classList.remove("empAll");
     } else if (dropDownText === "USA") {
       empAllId.classList.add("empAll");
       empGbId.classList.add("empAll");
-      empUsId.classList.add("empAll");
+      empAuId.classList.add("empAll");
       empUsId.classList.remove("empAll");
     } else if (dropDownText === "All Employees") {
-      empAllId.classList.add("empAll");
+      empAuId.classList.add("empAll");
       empGbId.classList.add("empAll");
       empUsId.classList.add("empAll");
       empAllId.classList.remove("empAll");
