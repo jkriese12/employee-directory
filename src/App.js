@@ -9,7 +9,7 @@ function App() {
   // Setting state for all employees and based on country
   const [employees, setEmployees] = useState([]);
   // Sets the state for the cycling of employees by last name
-  const [sortName, setSortName] = useState("nameLast");
+  // const [sortName, setSortName] = useState("nameLast");
 
   // Variables holding filter data for different countries
   const filterAu = employees.filter((emp) => emp.nat === "AU");
