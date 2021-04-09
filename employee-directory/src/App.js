@@ -8,31 +8,50 @@ import API from "./utils/API";
 function App() {
   // Setting state for all employees and based on country
   const [employees, setEmployees] = useState([]);
-  const [employeesAu, setEmployeesAu] = useState([]);
-  const [employeesGb, setEmployeesGb] = useState([]);
-  const [employeesUs, setEmployeesUs] = useState([]);
   // Sets the state for the cycling of employees by last name
-  const [sortAz, setSortAz] = useState(true);
   const [sortName, setSortName] = useState("nameLast");
   // Variables holding filter data for different countries
   const filterAu = employees.filter((emp) => emp.nat === "AU");
   const filterGb = employees.filter((emp) => emp.nat === "GB");
   const filterUs = employees.filter((emp) => emp.nat === "US");
+  // Variables to hold ID's for displaying data
+  const empAllId = document.getElementById("all");
+  const empAuId = document.getElementById("au");
+  const empGbId = document.getElementById("gb");
+  const empUsId = document.getElementById("us");
+  const indexSort = document.getElementById("sort").selectedIndex;
+  const dropDownSort = document.getElementById("sort").options[indexSort].text;
   // Buttton click event for sorting array data
   const handleSort = () => {
     const index = document.getElementById("countries").selectedIndex;
     const dropDownText = document.getElementById("countries").options[index].text;
-    setSortAz(!sortAz);
+
+    // if (dropDownSort === "Ascending (A-Z)") {
+    //   setSortAz(!sortAz);
+    // } else if (dropDownSort === "Descending (Z-A)") {
+    //   setSortAz(!sortAz);
+    // }
     if (dropDownText === "Australia") {
-      setEmployeesAu(filterAu);
-      console.log(employeesAu);
+      empAllId.classList.add("empAll");
+      empGbId.classList.add("empAll");
+      empUsId.classList.add("empAll");
+      empAuId.classList.remove("empAll");
     } else if (dropDownText === "Great Britain") {
-      setEmployeesGb(filterGb);
-      console.log(employeesGb);
+      empAllId.classList.add("empAll");
+      empGbId.classList.add("empAll");
+      empUsId.classList.add("empAll");
+      empGbId.classList.remove("empAll");
     } else if (dropDownText === "USA") {
-      setEmployeesUs(filterUs);
-      console.log(employeesUs);
-    } else console.log(employees);
+      empAllId.classList.add("empAll");
+      empGbId.classList.add("empAll");
+      empUsId.classList.add("empAll");
+      empUsId.classList.remove("empAll");
+    } else if (dropDownText === "All Employees") {
+      empAllId.classList.add("empAll");
+      empGbId.classList.add("empAll");
+      empUsId.classList.add("empAll");
+      empAllId.classList.remove("empAll");
+    }
   };
 
   // Calling API to initialize on page load to have all the data available
@@ -82,10 +101,67 @@ function App() {
         </button>
       </div>
       <Wrapper>
-        <div className="emp">
+        <div id="all" className="empAll">
           {employees
             .sort((a, b) => {
-              if (sortAz) {
+              if (dropDownSort === "Ascending (A-Z)") {
+                return a[sortName].localeCompare(b[sortName]);
+              } else {
+                return b[sortName].localeCompare(a[sortName]);
+              }
+            })
+            .map((emp) => (
+              <Employee
+                name={emp.name}
+                pic={emp.pic}
+                email={emp.email}
+                phone={emp.phone}
+                location={emp.location}
+              />
+            ))}
+        </div>
+        <div id="au" className="empAll">
+          {filterAu
+            .sort((a, b) => {
+              if (dropDownSort === "Ascending (A-Z)") {
+                return a[sortName].localeCompare(b[sortName]);
+              } else {
+                return b[sortName].localeCompare(a[sortName]);
+              }
+            })
+            .map((emp) => (
+              <Employee
+                name={emp.name}
+                pic={emp.pic}
+                email={emp.email}
+                phone={emp.phone}
+                location={emp.location}
+              />
+            ))}
+        </div>
+        <div id="gb" className="empAll">
+          {filterGb
+            .sort((a, b) => {
+              if (dropDownSort === "Ascending (A-Z)") {
+                return a[sortName].localeCompare(b[sortName]);
+              } else {
+                return b[sortName].localeCompare(a[sortName]);
+              }
+            })
+            .map((emp) => (
+              <Employee
+                name={emp.name}
+                pic={emp.pic}
+                email={emp.email}
+                phone={emp.phone}
+                location={emp.location}
+              />
+            ))}
+        </div>
+        <div id="us" className="empAll">
+          {filterUs
+            .sort((a, b) => {
+              if (dropDownSort === "Ascending (A-Z)") {
                 return a[sortName].localeCompare(b[sortName]);
               } else {
                 return b[sortName].localeCompare(a[sortName]);
